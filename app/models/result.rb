@@ -14,7 +14,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
     end
 
     tweet_array = []
-#
+
     # client.search(term, geocode: "43.6521,79.3832,10000mi").each do |tweet|
       client.search(term).each do |tweet|
       # puts check_for_keywords(tweet.text)
@@ -22,7 +22,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
 
       # if check_for_keywords(tweet.text) && filter_emotions(tweet.text)
       if filter_emotions(tweet.text)
-        tweet_array << {message: tweet.text, date: tweet.created_at, username: tweet.user.name, urls: "https://twitter.com/statuses/#{tweet.id_str}"}
+        tweet_array << {message: tweet.text, date: tweet.created_at, username: tweet.user.name, urls: "https://twitter.com/statuses/#{tweet.id}"}
       end
     end
 
