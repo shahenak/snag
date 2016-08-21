@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # Indico APIs
 gem 'indico'
+# rack-cors
+gem 'rack-cors'
 # deployment
 gem 'rails_12factor'
 gem 'puma'
