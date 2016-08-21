@@ -5,7 +5,7 @@ require 'indico'
 # model vars
 Indico.api_key = "dd5e35044234093be537186e304d0531"
 
-  def self.get_tweets(term = "banks OR finance OR investment OR banking OR accounts OR stocks OR assets OR reinvest OR invest OR bank OR money")
+  def self.get_tweets(term = "'help me' AND 'my finances' -RT")
     Result.delete_all
 
     client = Twitter::REST::Client.new do |config|
@@ -14,15 +14,15 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
     end
 
     tweet_array = []
+#
+    # client.search(term, geocode: "43.6521,79.3832,10000mi").each do |tweet|
+      client.search(term).each do |tweet|
+      # puts check_for_keywords(tweet.text)
+      # puts filter_emotions(tweet.text)
 
-    client.search(term, geocode: "43.6521,79.3832,1000mi").each do |tweet|
-
-      puts check_for_keywords(tweet.text)
-      puts filter_emotions(tweet.text)
-
-      if check_for_keywords(tweet.text) && filter_emotions(tweet.text)
+      # if check_for_keywords(tweet.text) && filter_emotions(tweet.text)
         tweet_array << {message: tweet.text, date: tweet.created_at, username: tweet.user.name}
-      end
+      # end
     end
 
     puts tweet_array
@@ -41,7 +41,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       puts result
 
       # get keywords
-      keywords = ["banks", "finance", "bank", "TFSA", "RRSP", "Spousal RRSP", "RRIF", "Spousal RRIF", "GRSP", "RESP", "Corporate", "LIRA", "Joint"]
+      keywords = ["banks", "finance", "bank", "TFSA", "RRSP", "Spousal RRSP", "RRIF", "Spousal RRIF", "GRSP", "RESP", "Corporate", "LIRA", "Joint", "fintech", "bank account", "financial"]
 
       # return true if the keyword exists, else return false
       result.each do |key, value|
@@ -89,12 +89,11 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
 
   def self.save_relevent_messages(messages)
 
-
     messages.each do |x|
-      result = Indico.text_tags(x[:message], {top_n: 3})
-      result_keys = result.keys
-      arr_string = result_keys.join(",")
-      x[:text_tags] = arr_string
+      # result = Indico.text_tags(x[:message], {top_n: 3})
+      # result_keys = result.keys
+      # arr_string = result_keys.join(",")
+      # x[:text_tags] = arr_string
 
       Result.create(message: x[:message], date: x[:date], username: x[:username], text_tags: x[:text_tags])
       puts 'stored'
@@ -123,7 +122,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
 
       puts tweet_array
       save_relevent_messages(tweet_array)
-      
+
     messages.each do |x|
         Result.create(message: x[:message], date: x[:date], username: x[:username])
         puts 'stored'
