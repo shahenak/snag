@@ -124,8 +124,8 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       puts tweet_array
       save_relevent_messages(tweet_array)
 
-    messages.each do |x|
-        Result.create(message: x[:message], date: x[:date], username: x[:username], url: x[:url])
+    tweet_array.each do |x|
+        Result.create(message: x[:message], date: x[:date], username: x[:username], url: x[:url ])
         puts 'stored'
     end
   end
