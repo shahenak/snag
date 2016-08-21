@@ -96,7 +96,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       # arr_string = result_keys.join(",")
       # x[:text_tags] = arr_string
 
-      Result.create(message: x[:message], date: (x[:date]).strftime("%b %d %Y"), username: x[:username], text_tags: x[:text_tags])
+      Result.create(message: x[:message], date: (x[:date]).strftime("%b %d %Y"), username: x[:username], text_tags: x[:text_tags], url: x[:url])
       puts 'stored'
 
     end
@@ -125,7 +125,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       save_relevent_messages(tweet_array)
 
     messages.each do |x|
-        Result.create(message: x[:message], date: x[:date], username: x[:username])
+        Result.create(message: x[:message], date: x[:date], username: x[:username], url: x[:url])
         puts 'stored'
     end
   end
