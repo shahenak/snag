@@ -95,7 +95,7 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       # arr_string = result_keys.join(",")
       # x[:text_tags] = arr_string
 
-      Result.create(message: x[:message], date: x[:date], username: x[:username], text_tags: x[:text_tags])
+      Result.create(message: x[:message], date: (x[:date]).strftime("%b %d %Y"), username: x[:username], text_tags: x[:text_tags])
       puts 'stored'
 
     end
