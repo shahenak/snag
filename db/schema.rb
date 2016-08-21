@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160821005951) do
+=======
+ActiveRecord::Schema.define(version: 20160820183630) do
+>>>>>>> aa5f3b5c7cfcba4d9e62e48035155b5862e35c05
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
@@ -73,12 +78,15 @@ ActiveRecord::Schema.define(version: 20160821005951) do
   add_index "reminders", ["contact_id"], name: "index_reminders_on_contact_id", using: :btree
   add_index "reminders", ["user_id"], name: "index_reminders_on_user_id", using: :btree
 
+=======
+>>>>>>> aa5f3b5c7cfcba4d9e62e48035155b5862e35c05
   create_table "results", force: :cascade do |t|
     t.text     "message"
     t.datetime "date"
     t.string   "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
     t.string   "text_tags"
   end
 
@@ -98,6 +106,8 @@ ActiveRecord::Schema.define(version: 20160821005951) do
     t.string   "secret"
     t.string   "reminder_platform"
     t.text     "automated_message"
+=======
+>>>>>>> aa5f3b5c7cfcba4d9e62e48035155b5862e35c05
   end
 
 end
