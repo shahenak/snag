@@ -5,7 +5,7 @@ require 'indico'
 # model vars
 Indico.api_key = "dd5e35044234093be537186e304d0531"
 
-  def self.get_tweets(term = "'help me' AND 'my finances' -RT")
+  def self.get_tweets(term = "'help me' AND 'my finances' OR 'banking' -RT")
     Result.delete_all
 
     client = Twitter::REST::Client.new do |config|
@@ -21,8 +21,9 @@ Indico.api_key = "dd5e35044234093be537186e304d0531"
       # puts filter_emotions(tweet.text)
 
       # if check_for_keywords(tweet.text) && filter_emotions(tweet.text)
+      if filter_emotions(tweet.text)
         tweet_array << {message: tweet.text, date: tweet.created_at, username: tweet.user.name}
-      # end
+      end
     end
 
     puts tweet_array

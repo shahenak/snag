@@ -1,6 +1,7 @@
 class ResultsController < ApplicationController
 
   def index
+    # Result.get_tweets
     @results = Result.all
     render json: @results
   end
